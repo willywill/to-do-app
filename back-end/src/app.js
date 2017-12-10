@@ -23,10 +23,7 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-// Create an example route for the home page
-app.get('/', async (req, res) => {
-  res.send("Hello, World!")
-})
+require('./routes')(app)
 
 app.listen(port, async () => {
   console.log(`Sever successfully started on port ${port}.`)
