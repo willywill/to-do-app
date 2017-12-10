@@ -2,21 +2,23 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
+const mongoose = require('mongoose')
+const config = require('./config/config.json')
 
 // Start our express server
 const app = express()
 
 // Define a ENV port or increment the default Vue.js port number (8080)
-const port = process.env.PORT || 8081
+const port = process.env.PORT || config.port
 
-/*
-  Just as a reminder, a quick list of common RESTful methods and meanings:
-  GET    - Retrieve a resource
-  POST   - Create a resource
-  PUT    - Create a resource. However, if it exist already, update it
-  PATCH  - Update a partial resource (saves bandwidth over PUT)
-  DELETE - Delete a resource
-*/
+// Connect our database
+mongoose.Promise = global.Promise
+mongoose.connect(config.db.url)
+
+const db = mongoose.connection
+db.once('open', () => console.log('Connected to the database successfully.'))
+db.on('error', () => console.log('There was an error in the database.'))
+
 
 // Initialize the middleware
 app.use(morgan('combined'))
