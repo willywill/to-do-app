@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title">Register</h1>
+    <h1 class="title">Login</h1>
     <hr>
     <div class="container">
       <b-notification
@@ -31,7 +31,7 @@
     <br>
     <button
     v-on:click="register"
-    class="button is-primary">Register</button>
+    class="button is-primary">Login</button>
   </div>
 </template>
 
@@ -39,7 +39,7 @@
 import AuthenticationService from '@/services/AuthenticationService'
 
 export default {
-  name: 'register',
+  name: 'login',
   data () {
     return {
       user: '',
@@ -51,7 +51,7 @@ export default {
   methods: {
     async register () {
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           user: this.user,
           password: this.password
         })

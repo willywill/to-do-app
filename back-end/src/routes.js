@@ -13,4 +13,7 @@ const AuthenticationControllerPolicy = require('./policies/AuthenticationControl
 module.exports = (app) => {
   // Validate the data before hitting the backend end-point
   app.post('/register', AuthenticationControllerPolicy.register, AuthenticationController.register)
+
+  app.post('/login', AuthenticationController.login)
+
 }

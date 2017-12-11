@@ -13,10 +13,10 @@ const port = process.env.PORT || config.port
 
 // Connect our database
 mongoose.Promise = global.Promise
-mongoose.connect(config.db.url)
+mongoose.connect(config.db.url, { useMongoClient: true })
 
 const db = mongoose.connection
-db.once('open', () => console.log('Connected to the database successfully.'))
+db.once('open', () => console.log(`Sever successfully connected to the database.`))
 db.on('error', () => console.log('There was an error in the database.'))
 
 
