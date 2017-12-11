@@ -6,10 +6,10 @@
     <router-link class="navbar-item" to="/">
       Home
     </router-link>
-    <router-link class="navbar-item" to="/login">
+    <router-link v-if="!$store.state.isUserLoggedIn" class="navbar-item" to="/login">
       Login
     </router-link>
-    <router-link class="navbar-item" to="/register">
+    <router-link v-if="!$store.state.isUserLoggedIn" class="navbar-item" to="/register">
       Sign Up
     </router-link>
 
