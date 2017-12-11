@@ -15,7 +15,12 @@ module.exports = {
     try {
       const userCredentials = req.body
       const user = await User.create(userCredentials)
-      res.send(user.toJSON())
+
+      const userJSON = user.toJSON()
+      res.send({
+        user: userJSON,
+        token: signUser(userJSON)
+      })
     } catch(err) {
       console.log(err)
       res.status(400).send({
@@ -31,7 +36,7 @@ module.exports = {
 
       if(!user) {
         res.status(403).send({
-          error: 'The login information was not correct. Try again.'
+          error: 'The login information was incorrect. Try again.'
         })
       }
 

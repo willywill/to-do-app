@@ -15,7 +15,7 @@
       <b-input
       type="name"
       name="name"
-      v-model="user"
+      v-model="userName"
       placeholder="Enter a username..."
       style="max-width: 400px; margin: auto;"/>
     </div>
@@ -30,7 +30,7 @@
     </div>
     <br>
     <button
-    v-on:click="register"
+    v-on:click="login"
     class="button is-primary">Login</button>
   </div>
 </template>
@@ -42,17 +42,17 @@ export default {
   name: 'login',
   data () {
     return {
-      user: '',
+      userName: '',
       password: '',
       error: null
     }
   },
 
   methods: {
-    async register () {
+    async login () {
       try {
         await AuthenticationService.login({
-          user: this.user,
+          userName: this.userName,
           password: this.password
         })
       } catch (error) {
