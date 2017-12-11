@@ -19,7 +19,6 @@ export default new Vuex.Store({
       } else {
         state.isUserLoggedIn = false
       }
-
     },
     setUser (state, user) {
       state.user = user
