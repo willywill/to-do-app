@@ -59,5 +59,29 @@ module.exports = {
         error: 'The login could not be processed. Try again.'
       })
     }
+  },
+  async todo (req, res) {
+    try {
+      const {userName, password} = req.body
+      const query = { userName: userName }
+      const user = await User.findOne(query).exec()
+
+      if(!user) {
+        res.status(403).send({
+          error: 'Could not process the access to this resource.'
+        })
+      }
+
+      const userJSON = user.toJSON()
+      res.send({
+        user: userJSON,
+        token: signUser(userJSON)
+      })
+    } catch(err) {
+      console.log(err)
+      res.status(500).send({
+        error: 'Could not process the access to this resource. Try again.'
+      })
+    }
   }
 }

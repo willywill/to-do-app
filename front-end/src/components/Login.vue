@@ -11,27 +11,29 @@
       </b-notification>
       <br>
     </div>
-    <div class="field">
-      <b-input
-      type="name"
-      name="name"
-      v-model="userName"
-      placeholder="Enter a username..."
-      style="max-width: 400px; margin: auto;"/>
-    </div>
-    <br>
-    <div class="field">
-      <b-input
-      type="password"
-      name="password"
-      v-model="password"
-      placeholder="Enter a password..."
-      style="max-width: 400px; margin: auto;"/>
-    </div>
-    <br>
-    <button
-    v-on:click="login"
-    class="button is-primary">Login</button>
+    <form v-on:submit.prevent="login">
+      <div class="field">
+        <b-input
+        type="name"
+        name="name"
+        v-model="userName"
+        placeholder="Enter a username..."
+        style="max-width: 400px; margin: auto;"/>
+      </div>
+      <br>
+      <div class="field">
+        <b-input
+        type="password"
+        name="password"
+        v-model="password"
+        placeholder="Enter a password..."
+        style="max-width: 400px; margin: auto;"/>
+      </div>
+      <br>
+      <button
+      v-on:click="login"
+      class="button is-primary">Login</button>
+    </form>
   </div>
 </template>
 
@@ -59,7 +61,7 @@ export default {
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
         this.$router.push({
-          name: 'home'
+          name: 'todo'
         })
       } catch (error) {
         this.error = error.response.data.error

@@ -3,7 +3,7 @@
    role="navigation"
    aria-label="main navigation">
   <div class="navbar-end">
-    <router-link v-if="!$store.state.isUserLoggedIn" class="navbar-item" to="/">
+    <router-link class="navbar-item" to="/">
       Home
     </router-link>
     <router-link v-if="!$store.state.isUserLoggedIn" class="navbar-item" to="/login">
@@ -11,6 +11,9 @@
     </router-link>
     <router-link v-if="!$store.state.isUserLoggedIn" class="navbar-item" to="/register">
       Sign Up
+    </router-link>
+    <router-link v-if="$store.state.isUserLoggedIn" class="navbar-item" to="/my-to-do">
+      To-Do
     </router-link>
     <a v-if="$store.state.isUserLoggedIn" v-on:click="logout" class="navbar-item">
       Logout
