@@ -29,5 +29,5 @@ require('./passport')
 require('./routes')(app)
 
 app.listen(port, async () => {
-  console.log(`Sever successfully started on port ${port}.`)
+  console.log(`Server successfully started on port ${port}.`)
 })
